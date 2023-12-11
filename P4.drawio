@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-12-11T07:08:40.240Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="iBoe6z4H6a-9TvtZpwNn" version="22.1.7" type="device">
+<mxfile host="app.diagrams.net" modified="2023-12-11T19:27:51.791Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="Omux-k32miksM3EIdoqi" version="22.1.7" type="device">
   <diagram name="Page-1" id="HYe1LKIJQzY3ldaQz6WX">
-    <mxGraphModel dx="3538" dy="-132" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3387" dy="-205" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -597,8 +597,38 @@
         <mxCell id="C9hXWPLKWbTWLrYmM0g9-8" value="Graph of Vertexes of Profiles (dict of Profiles key, Vertex&amp;lt;Profiles&amp;gt; value)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="-645" y="1130" width="410" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="C9hXWPLKWbTWLrYmM0g9-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="C9hXWPLKWbTWLrYmM0g9-9" target="C9hXWPLKWbTWLrYmM0g9-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-510" y="1390" />
+              <mxPoint x="-470" y="1390" />
+              <mxPoint x="-470" y="1410" />
+              <mxPoint x="-380" y="1410" />
+              <mxPoint x="-380" y="1470" />
+              <mxPoint x="-340" y="1470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C9hXWPLKWbTWLrYmM0g9-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="C9hXWPLKWbTWLrYmM0g9-9" target="C9hXWPLKWbTWLrYmM0g9-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-430" y="1366" />
+              <mxPoint x="-430" y="1390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="C9hXWPLKWbTWLrYmM0g9-9" value="Profile1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-570" y="1340" width="80" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="C9hXWPLKWbTWLrYmM0g9-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="C9hXWPLKWbTWLrYmM0g9-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-330" y="1510" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-300" y="1460" />
+              <mxPoint x="-329" y="1460" />
+              <mxPoint x="-329" y="1510" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="C9hXWPLKWbTWLrYmM0g9-10" value="Profile2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-360" y="1355" width="80" height="35" as="geometry" />
@@ -688,11 +718,11 @@
         <mxCell id="C9hXWPLKWbTWLrYmM0g9-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.895;entryY=-0.019;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="C9hXWPLKWbTWLrYmM0g9-42" target="C9hXWPLKWbTWLrYmM0g9-16">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="C9hXWPLKWbTWLrYmM0g9-46" value="Removal must&lt;br&gt;remove the reference&lt;br&gt;from users list,&lt;br&gt;graph dictionary&lt;br&gt;of vertices,&lt;br&gt;and friend list in the&lt;br&gt;vertex for the profile" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-930" y="1308" width="140" height="110" as="geometry" />
+        <mxCell id="C9hXWPLKWbTWLrYmM0g9-46" value="Removal must&lt;br&gt;remove the reference&lt;br&gt;from users list,&lt;br&gt;graph dictionary&lt;br&gt;of vertices,&lt;br&gt;the edgeList of any&lt;br&gt;connected Vertex, and the&lt;br&gt;list of friends/besties of any&lt;br&gt;connected Profile" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-945" y="1293" width="170" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="C9hXWPLKWbTWLrYmM0g9-47" value="When we add a friendship&lt;br&gt;Is that added to the Profile&lt;br&gt;or to the Graph (Vertex&amp;lt;Profile&amp;gt;)?" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-1020" y="1523" width="200" height="60" as="geometry" />
+        <mxCell id="C9hXWPLKWbTWLrYmM0g9-53" value="Adding a profile will add it to the graph &lt;br&gt;using addVertex(Profile),&lt;br&gt;and to the users list&lt;br&gt;&lt;br&gt;Adding a friendship will add it to&lt;br&gt;the graph using Vertex.connect(Vertex)&lt;br&gt;and to both Profiles" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-1055" y="1458" width="230" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
