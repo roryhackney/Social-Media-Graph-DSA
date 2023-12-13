@@ -84,7 +84,7 @@ You are not required to use/have all the ADT packages listed above if your imple
 * Somewhere, a method should exist that can remove a profile
 
 ### Layout
-![image demonstrating the desired functionality of the assignment](img/SocialMediaLayout.JPG)
+![image demonstrating the desired functionality of the assignment](../struct/img/SocialMediaLayout.JPG)
 
 ### Output
 Your output will be in the format of a menu that will simulate a user interacting with the social media system. The difference is they will have admin rights to create new profiles, delete anyone's profile, etc. Please have it during initial run of your program, the user must create a profile and set a variable to contain the current user. Maintain this variable so current user can always be determined (and switched). Your menu should contain the following. It can be in whatever order or wording you want:
