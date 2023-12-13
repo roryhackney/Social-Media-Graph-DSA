@@ -5,6 +5,8 @@ import ADTPackage.QueueInterface;
 import ADTPackage.StackInterface;
 
 public class MainDW {
+    /** Testing class for Directed Weighted graphs */
+
     private static DirectedGraph<String> myGraph = new DirectedGraph<>();
     private static StackInterface<String> path = new LinkedStack<>();
     private static final String A = "A";

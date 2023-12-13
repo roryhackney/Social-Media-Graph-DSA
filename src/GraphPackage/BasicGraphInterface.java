@@ -1,5 +1,9 @@
 package GraphPackage;
 
+/**
+ * Represents Graph ADT, which contains vertices and connecting edges. Defines required methods for graphs.
+ * @param <T> data type to be held in the vertices of the graph
+ */
 public interface BasicGraphInterface<T>
 {
     /** Adds a given vertex to this graph.

@@ -1,6 +1,10 @@
 package GraphPackage;
 import ADTPackage.*; // Classes that implement various ADTs
 
+/**
+ * Defines the requirements for Graph algorithms and traversals
+ * @param <T> data type to be held in the vertices of the Graph
+ */
 public interface GraphAlgorithmsInterface<T>
 {
     /** Performs a breadth-first traversal of this graph.

@@ -4,11 +4,19 @@ import ADTPackage.*;
 
 import java.util.Iterator;
 
+/**
+ * Represents a Directed Graph which stores the vertices and the directed edges connecting them to their neighbors
+ * @param <T> the data type of the objects stored in the vertices
+ */
 public class DirectedGraph<T> implements GraphInterface<T>
 {
+    /** A dictionary that stores the vertices as values accessed with the objects (keys) also stored in the vertices */
     private DictionaryInterface<T, VertexInterface<T>> vertices;
+
+    /** Number of edges connecting two vertices */
     private int edgeCount;
 
+    /** Constructs a new empty graph with no vertices or edges */
     public DirectedGraph()
     {
         vertices = new UnsortedLinkedDictionary<>();
@@ -78,6 +86,7 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return edgeCount;
     } // end getNumberOfEdges
 
+    /** Used before / after traversal to reset path data stored in the vertices */
     protected void resetVertices()
     {
         Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
@@ -278,6 +287,8 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return pathCost;
     } // end getCheapestPath
 
+    //first node in dict is front of linkedlist, is NOT the first added (subsequent adds add to the front)
+    /** Returns the first vertex in the dictionary with no unvisited neighbors, visiting each one by one until terminal is found*/
     protected VertexInterface<T> findTerminal()
     {
         boolean found = false;

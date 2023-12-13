@@ -3,7 +3,7 @@ package GraphPackage;
 import ADTPackage.LinkedStack;
 import ADTPackage.QueueInterface;
 import ADTPackage.StackInterface;
-
+/** Testing class for Directed Unweighted graphs */
 public class MainDU {
     private static DirectedGraph<String> myGraph = new DirectedGraph<>();
     private static StackInterface<String> path = new LinkedStack<>();

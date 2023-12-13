@@ -4,6 +4,7 @@ package ADTPackage;
     @author Frank M. Carrano
     @author Timothy M. Henry
     @version 5.0
+    @param <T> data type of the objects to be held in the List
 */
 public interface ListInterface<T>
 {
@@ -21,7 +22,7 @@ public interface ListInterface<T>
                            position of the new entry.
        @param newEntry     The object to be added as a new entry.
        @throws  IndexOutOfBoundsException if either
-                newPosition < 1 or newPosition > getLength() + 1. */
+                newPosition {@code <} 1 or newPosition > getLength() + 1. */
    public void add(int newPosition, T newEntry);
    
    /** Removes the entry at a given position from this list.
@@ -32,7 +33,7 @@ public interface ListInterface<T>
                              the entry to be removed.
        @return  A reference to the removed entry.
        @throws  IndexOutOfBoundsException if either 
-                givenPosition < 1 or givenPosition > getLength(). */
+                givenPosition {@code <} 1 or givenPosition > getLength(). */
    public T remove(int givenPosition);
    
    /** Removes all entries from this list. */
@@ -45,7 +46,7 @@ public interface ListInterface<T>
                         position givenPosition.
        @return  The original entry that was replaced.
        @throws  IndexOutOfBoundsException if either
-                givenPosition < 1 or givenPosition > getLength(). */
+                givenPosition {@code <} 1 or givenPosition > getLength(). */
    public T replace(int givenPosition, T newEntry);
    
    /** Retrieves the entry at a given position in this list.
@@ -53,7 +54,7 @@ public interface ListInterface<T>
                              the desired entry.
        @return  A reference to the indicated entry.
        @throws  IndexOutOfBoundsException if either
-                givenPosition < 1 or givenPosition > getLength(). */
+                givenPosition {@code <} 1 or givenPosition > getLength(). */
    public T getEntry(int givenPosition);
    
    /** Retrieves all entries that are in this list in the order in which

@@ -4,6 +4,7 @@ package ADTPackage;
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
+   @param <T> data type of the objects to be held in the Queue
 */
 public interface QueueInterface<T>
 {

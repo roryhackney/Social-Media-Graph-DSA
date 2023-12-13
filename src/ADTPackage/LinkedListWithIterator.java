@@ -8,12 +8,16 @@ import java.util.NoSuchElementException;
  @author Frank M. Carrano
  @author Timothy M. Henry
  @version 5.0
+ @param <T> data type of the objects to be stored in the LinkedListWithIterator
  */
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
+    /** the first node in the LinkedList, also known as head or front */
    private Node firstNode;
+   /** the current number of entries in the LinkedList */
    private int  numberOfEntries;;
-   
+
+   /** Constructs a new empty LinkedListWithIterator */
    public LinkedListWithIterator()
    {
       initializeDataFields();
@@ -186,16 +190,18 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
       return iterator();
    } // end getIterator
    
-   // Initializes the class's data fields to indicate an empty list.
+   /** Initializes the class's data fields to indicate an empty list. */
    private void initializeDataFields()
    {
       firstNode = null;
       numberOfEntries = 0;
    } // end initializeDataFields
-   
-   // Returns a reference to the node at a given position.
-   // Precondition: The chain is not empty;
-   //               1 <= givenPosition <= numberOfEntries.
+
+    /** Returns a reference to the node at a given position.
+     * Precondition: The chain is not empty;
+     * @param givenPosition the position in the chain to access; 1 {@code <=} givenPosition {@code <=} numberOfEntries
+     * @return the node at the given position in the chain
+     */
    private Node getNodeAt(int givenPosition)
    {
       // Assertion: (firstNode != null) &&
@@ -209,16 +215,22 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
       // Assertion: currentNode != null
       return currentNode;
    } // end getNodeAt
-   
-   private class IteratorForLinkedList implements Iterator<T>
+
+    /**
+     * Iterator class which iterates over the entries in the LinkedList
+     */
+    private class IteratorForLinkedList implements Iterator<T>
    {
+       /** The next node in the chain to be processed */
       private Node nextNode;
-      
+
+      /** Constructs an IteratorForLinkedList which starts at firstNode */
       private IteratorForLinkedList()
       {
          nextNode = firstNode;
       } // end default constructor
-      
+
+       /** {@inheritDoc} */
       public T next()
       {
          T result;
@@ -233,50 +245,82 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          return result; // Return next entry in iteration
       } // end next
 
+       /** {@inheritDoc} */
       public boolean hasNext()
       {
          return nextNode != null;
       } // end hasNext
 
+       /** Remove is not supported for LinkedListWithIterator */
       public void remove()
       {
          throw new UnsupportedOperationException("remove() is not supported " +
                                                  "by this iterator");
       } // end remove
    } // end IteratorForLinkedList
-   
-   private class Node
+
+    /**
+     * Node represents a container for data which also refers to the next Node in the chain
+     */
+    private class Node
    {
-      private T    data; // Entry in list
-      private Node next; // Link to next node
-      
+       /** Entry in list */
+      private T    data;
+      /** Link to next node */
+      private Node next;
+
+       /**
+        * Constructs a new node with the given dataPortion and null next
+        * @param dataPortion the data the node should contain
+        */
       private Node(T dataPortion)
       {
          data = dataPortion;
          next = null;
       } // end constructor
-      
+
+       /**
+        * Constructs a new node with the given dataPortion and which refers to nextNode
+        * @param dataPortion the data the node should contain
+        * @param nextNode the next node in the chain that this node should reference
+        */
       private Node(T dataPortion, Node nextNode)
       {
          data = dataPortion;
          next = nextNode;
       } // end constructor
-      
+
+       /**
+        * Returns the data held in this node
+        * @return the data held in this node
+        */
       private T getData()
       {
          return data;
       } // end getData
-      
+
+       /**
+        * Sets the data in this node to newData
+        * @param newData the new data this node should hold
+        */
       private void setData(T newData)
       {
          data = newData;
       } // end setData
-      
+
+       /**
+        * Returns the next node this node refers to
+        * @return the next node this node refers to
+        */
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
-      
+
+       /**
+        * Sets the next node this node should refer to
+        * @param nextNode the next node this node should refer to
+        */
       private void setNextNode(Node nextNode)
       {
          next = nextNode;

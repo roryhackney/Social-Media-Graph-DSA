@@ -4,16 +4,20 @@ import java.util.NoSuchElementException;
 /**
    A class that implements the ADT dictionary by using a chain of nodes.
    The dictionary is unsorted and has distinct search keys.
-  
+   @param <K> data type for the search keys in the dictionary
+   @param <V> data type for the associated values in the dictionary
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
 */
 public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 {
-	private Node firstNode;   // Reference to first node of chain
+	/** Reference to first node of chain */
+	private Node firstNode;
+	/** Current number of key/value pairs in the dictionary */
 	private int  numberOfEntries; 
-	
+
+	/** Constructs a new empty UnsortedLinkedDictionary */
 	public UnsortedLinkedDictionary()
 	{
       initializeDataFields();
@@ -133,39 +137,44 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 	{
 		return new KeyIterator();
 	} // end getKeyIterator
-	
+
 	public Iterator<V> getValueIterator()
 	{
 		return new ValueIterator();
 	} // end getValueIterator
 
-   // Initializes the class's data fields to indicate an empty list.
+   /** Initializes the class's data fields to indicate an empty list. */
    private void initializeDataFields()
    {
 		firstNode = null;
 		numberOfEntries = 0;
    } // end initializeDataFields
-	
-// Same as in SortedLinkedDictionary.
-// Since iterators implement Iterator, methods must be public.
+
+	// Same as in SortedLinkedDictionary.
+	// Since iterators implement Iterator, methods must be public.
+	/**
+	 * Iterator class over the search keys in the dictionary
+	 */
 	private class KeyIterator implements Iterator<K>
 	{
+		/** The next node in the chain of key/value pairs */
 		private Node nextNode;
-		
+
+		/** Constructs a new KeyIterator which will start at the firstNode in the chain of pairs */
 		private KeyIterator()
 		{
 			nextNode = firstNode;
 		} // end default constructor
-		
-		public boolean hasNext() 
+
+		public boolean hasNext()
 		{
 			return nextNode != null;
 		} // end hasNext
-		
+
 		public K next()
 		{
 			K result;
-			
+
 			if (hasNext())
 			{
 				result = nextNode.getKey();
@@ -175,20 +184,27 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 			{
 				throw new NoSuchElementException();
 			} // end if
-		
+
 			return result;
 		} // end next
-		
+
+		/** Remove is unsupported for UnsortedLinkedDictionary
+		 * @throws  UnsupportedOperationException when called
+		 */
 		public void remove()
 		{
 			throw new UnsupportedOperationException();
 		} // end remove
-	} // end KeyIterator 
-	
+	} // end KeyIterator
+
+	/** Iterator class over the associated values in the dictionary */
 	private class ValueIterator implements Iterator<V>
 	{
+
+		/** The next node in the chain of key/value pairs */
 		private Node nextNode;
-		
+
+		/** Constructs a new ValueIterator starting at the firstNode in the chain */
 		private ValueIterator()
 		{
 			nextNode = firstNode;
@@ -215,57 +231,95 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 		
 			return result;
 		} // end next
-		
+
+		/**
+		 * Unsupported for UnsortedLinkedDictionary
+		 * @throws UnsupportedOperationException when called
+		 */
 		public void remove()
 		{
 			throw new UnsupportedOperationException();
 		} // end remove
 	} // end getValueIterator
 
+	/** Container class for key value pairs, also refers to the next node in the linked chain */
 	private class Node
 	{
+		/** the search key */
 		private K key;
+		/** the associated value */
 		private V value;
+		/** the next node in the linked chain */
 		private Node next;
 
+		/**
+		 * Constructs a new node with the given key and value and null next
+		 * @param searchKey the search key
+		 * @param dataValue the associated value
+		 */
 		private Node(K searchKey, V dataValue)
 		{
 			key = searchKey;
 			value = dataValue;
 			next = null;	
 		} // end constructor
-		
+
+		/**
+		 * Constructs a new node with the given key, value, and nextNode
+		 * @param searchKey the search key
+		 * @param dataValue the associated value
+		 * @param nextNode the next node in the linked chain
+		 */
 		private Node(K searchKey, V dataValue, Node nextNode)
 		{
 			key = searchKey;
 			value = dataValue;
 			next = nextNode;	
 		} // end constructor
-		
+
+		/**
+		 * Returns the search key stored in this node
+		 * @return the search key
+		 */
 		private K getKey()
 		{
 			return key;
 		} // end getKey
-		
+
+		/**
+		 * Returns the associated value stored in this node
+		 * @return the associated value
+		 */
 		private V getValue()
 		{
 			return value;
 		} // end getValue
 
+		/**
+		 * Sets the associated value stored in this node
+		 * @param newValue the new associated value to be stored in this node
+		 */
 		private void setValue(V newValue)
 		{
 			value = newValue;
 		} // end setValue
 
+		/**
+		 * Returns the next node in the linked chain that this node refers to
+		 * @return the next node in the linked chain
+		 */
 		private Node getNextNode()
 		{
 			return next;
 		} // end getNextNode
-		
+
+		/**
+		 * Sets the next node in the linked chain for this node to refer to
+		 * @param nextNode the desired next node in the linked chain following this one
+		 */
 		private void setNextNode(Node nextNode)
 		{
 			next = nextNode;
 		} // end setNextNode
 	} // end Node
 } // end UnsortedLinkedDictionary
-		
