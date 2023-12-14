@@ -2,6 +2,8 @@ import ADTPackage.QueueInterface;
 import GraphPackage.UndirectedGraph;
 import src.Profile;
 
+import java.util.ArrayList;
+
 /**
  * ProfileManager class to manage Profiles for social network
  * @author Rory Hackney
@@ -14,12 +16,14 @@ public class ProfileManager {
      * UndirectedGraph to hold Profile objects
      */
     private UndirectedGraph<Profile> profileGraph;
+    private ArrayList<Profile> allProfiles;
 
     /**
      * Sole Constructor for ProfileManager class.
      */
     public ProfileManager() {
         profileGraph = new UndirectedGraph<Profile>();
+        allProfiles = new ArrayList<Profile>();
     }
 
     /**
@@ -28,6 +32,7 @@ public class ProfileManager {
      */
     public void addProfile(Profile profile) {
         profileGraph.addVertex(profile);
+        allProfiles.add(profile);
     }
 
     /**
@@ -48,19 +53,33 @@ public class ProfileManager {
     public String displayProfiles(Profile profile) {
         StringBuilder profilesString = new StringBuilder();
         profilesString.append("All profiles: \n");
-        QueueInterface<Profile> breadthFirst = profileGraph.getBreadthFirstTraversal(profile);
-        while (!breadthFirst.isEmpty()) {
-            profilesString.append(breadthFirst.dequeue().toString() + "\n");
+        for (Profile currentProfile : allProfiles) {
+            profilesString.append(currentProfile.toString() + "\n");
         }
         return  profilesString.toString();
     }
 
     /**
      * Gives a string of all profiles and all their connected friends.
+     * @return              String representation of all profiles with their associated edges.
+     */
+    public String displayProfilesAndFriends() {
+        StringBuilder profilesString = new StringBuilder();
+        profilesString.append("All profiles: \n");
+        for (Profile currentProfile : allProfiles) {
+            profilesString.append(currentProfile.toString() + "\n");
+            profilesString.append("Friends of " + currentProfile.getName() + ":\n");
+            profilesString.append(currentProfile.printFriends());
+        }
+        return  profilesString.toString();
+    }
+
+    /**
+     * Gives a string of all profiles and all their connected friends using a Breadth First Traversal
      * @param profile       Profile to begin traversal from
      * @return              String representation of all profiles with their associated edges.
      */
-    public String displayProfilesAndFriends(Profile profile) {
+    public String displayProfilesBreadthFirst(Profile profile) {
         StringBuilder profilesString = new StringBuilder();
         profilesString.append("All profiles: \n");
         QueueInterface<Profile> breadthFirst = profileGraph.getBreadthFirstTraversal(profile);
@@ -72,6 +91,7 @@ public class ProfileManager {
         }
         return  profilesString.toString();
     }
+
 
     /**
      * Removes a profile from the graph
