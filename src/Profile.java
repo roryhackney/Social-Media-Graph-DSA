@@ -131,6 +131,14 @@ public class Profile {
     }
 
     /**
+     * Returns the id associated with the profile.
+     * @return      int ID of the profile
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
      * Returns a string with all the relevant profile data.
      * @return      String representation of the profile.
      */
