@@ -4,6 +4,7 @@ import ADTPackage.LinkedStack;
 import ADTPackage.QueueInterface;
 import ADTPackage.StackInterface;
 
+/** Testing class for Undirected Weighted graphs */
 public class MainUW {
     private static UndirectedGraph<String> myGraph = new UndirectedGraph<>();
     private static StackInterface<String> path = new LinkedStack<>();
