@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.List;
 public class Main {
     private static ProfileManager manager;
     private static Scanner readInput;
@@ -28,8 +28,9 @@ public class Main {
             //3. View all users -> add friend
             System.out.println("3\tView All Users");
             //4. View another user and their friends -> add friend
-            System.out.println("4\tView Another User's Friends");
+            System.out.println("4\tView User's Friends");
             //5. View all my friends
+            System.out.println("5\tView My Friends");
             //6. View all my friends' friends
             //7. Switch accounts
             //8. Delete a user's account -> Warning: this will permanently delete user + name. Are you sure? Y/N
@@ -52,34 +53,8 @@ public class Main {
                     addFriends(addFriend);
                     break;
                 case "4":
-                    String input = "y";
-                    while (input.equals("y")) {
-                        System.out.println("Whose profile would you like to view?");
-                        while (!readInput.hasNextInt()) {
-                            System.out.println("Please enter an ID (whole number)");
-                            readInput.next();
-                        }
-                        int id = readInput.nextInt();
-                        readInput.nextLine(); //remove /n at end of this line
-
-                        Profile user = manager.getUser(id);
-                        System.out.println(user);
-                        System.out.println("Friends:");
-                        List<Profile> friends = user.getFriends();
-                        for (Profile friend : friends) {
-                            System.out.println(friend);
-                        }
-                        System.out.println("That's all their friends.");
-                        System.out.println("Would you like to view another profile?");
-                        System.out.println("Enter y or Enter for yes, n for no.");
-                        input = readInput.nextLine().strip();
-                        while (!input.isEmpty() && !input.equals("y") && !input.equals("n")) {
-                            System.out.println("Enter y or Enter for yes, n for no.");
-                            input = readInput.nextLine().strip();
-                        }
-                    }
+                    viewProfileAndFriends();
                     break;
-
                 case "9":
                     System.out.println("This will end your session and delete all users. Are you sure you want to exit?");
                     String exit = "";
@@ -201,6 +176,34 @@ public class Main {
             System.out.println("Would you like to add anyone else? Enter y or Enter for yes, otherwise no.");
             addFriend = readInput.nextLine().strip().toLowerCase();
             if (addFriend.isEmpty()) addFriend = "y";
+        }
+    }
+
+    public static void viewProfileAndFriends() {
+        String input = "";
+        while (input.equals("y") || input.isEmpty()) {
+            System.out.println("Whose profile would you like to view?");
+            while (! readInput.hasNextInt()) {
+                System.out.println("Please enter an ID (whole number)");
+                readInput.next();
+            }
+            int id = readInput.nextInt();
+            readInput.nextLine(); //remove /n at end of this line
+
+            Profile user = manager.getUser(id);
+            if (user == null) {
+                System.out.println("User #" + id + " does not exist.");
+            } else {
+                System.out.println(user);
+                user.printFriends();
+                System.out.println("That's all their friends.");
+                System.out.println("Would you like to view another profile?");
+                input = "x";
+                while (!input.isEmpty() && !input.equals("y") && !input.equals("n")) {
+                    System.out.println("Enter y or Enter for yes, n for no.");
+                    input = readInput.nextLine().strip();
+                }
+            }
         }
     }
 }
