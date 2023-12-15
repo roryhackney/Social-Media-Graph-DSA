@@ -4,11 +4,19 @@ import ADTPackage.*;
 
 import java.util.Iterator;
 
+/**
+ * Represents a Directed Graph which stores the vertices and the directed edges connecting them to their neighbors
+ * @param <T> the data type of the objects stored in the vertices
+ */
 public class DirectedGraph<T> implements GraphInterface<T>
 {
+    /** A dictionary that stores the vertices as values accessed with the objects (keys) also stored in the vertices */
     private DictionaryInterface<T, VertexInterface<T>> vertices;
+
+    /** Number of edges connecting two vertices */
     private int edgeCount;
 
+    /** Constructs a new empty graph with no vertices or edges */
     public DirectedGraph()
     {
         vertices = new UnsortedLinkedDictionary<>();
@@ -82,6 +90,7 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return edgeCount;
     } // end getNumberOfEdges
 
+    /** Used before / after traversal to reset path data stored in the vertices */
     protected void resetVertices()
     {
         Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
@@ -282,6 +291,11 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return pathCost;
     } // end getCheapestPath
 
+    //first node in dict is front of linked list, is NOT the first added (subsequent adds add to the front)
+    /** Returns the first unvisited vertex in the dictionary that has no unvisited neighbors, visiting each one by one
+     * via dictionary ValueIterator until terminal node is found
+     * @return the first terminal node found (unvisited with 0 unvisited neighbors)
+     */
     protected VertexInterface<T> findTerminal()
     {
         boolean found = false;
@@ -293,7 +307,7 @@ public class DirectedGraph<T> implements GraphInterface<T>
         {
             VertexInterface<T> nextVertex = vertexIterator.next();
 
-            // If nextVertex is unvisited AND has only visited neighbors)
+            // If nextVertex is unvisited AND has only visited neighbors, found it
             if (!nextVertex.isVisited())
             {
                 if (nextVertex.getUnvisitedNeighbor() == null )
@@ -307,7 +321,7 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return result;
     } // end findTerminal
 
-    // Used for testing
+    /** Used for testing: displays all the edges in the graph */
     public void displayEdges()
     {
         System.out.println("\nEdges exist from the first vertex in each line to the other vertices in the line.");
@@ -319,12 +333,28 @@ public class DirectedGraph<T> implements GraphInterface<T>
         } // end while
     } // end displayEdges
 
+
+    /**
+     * Used for getCheapestPath() - multiple paths could exist between the same nodes but with different costs.
+     * Compared by cost, so PriorityQueue can sort EntryPQs by cost (and retrieve the cheapest path between nodes)
+     */
     private class EntryPQ implements Comparable<EntryPQ>
     {
+        /** Current vertex along this path */
         private VertexInterface<T> vertex;
-        private VertexInterface<T> previousVertex;
-        private double cost; // cost to nextVertex
 
+        /** Reference to previous vertex along this path */
+        private VertexInterface<T> previousVertex;
+
+        /** the cost of the path from the origin to vertex  */
+        private double cost;
+
+        /**
+         * Constructs a new EntryPQ
+         * @param vertex the current vertex along this path
+         * @param cost the cost of the path from the origin to this vertex
+         * @param previousVertex the previous vertex along this path
+         */
         private EntryPQ(VertexInterface<T> vertex, double cost, VertexInterface<T> previousVertex)
         {
             this.vertex = vertex;
@@ -332,16 +362,28 @@ public class DirectedGraph<T> implements GraphInterface<T>
             this.cost = cost;
         } // end constructor
 
+        /**
+         * Returns the current vertex stored in this EntryPQ
+         * @return the current vertex
+         */
         public VertexInterface<T> getVertex()
         {
             return vertex;
         } // end getVertex
 
+        /**
+         * Returns the previous vertex along this path
+         * @return the previous vertex along this path
+         */
         public VertexInterface<T> getPredecessor()
         {
             return previousVertex;
         } // end getPredecessor
 
+        /**
+         * Returns the cost of the path from the origin to the current vertex
+         * @return the cost of the path from origin to vertex
+         */
         public double getCost()
         {
             return cost;
@@ -354,6 +396,10 @@ public class DirectedGraph<T> implements GraphInterface<T>
             return (int)Math.signum(otherEntry.cost - cost);
         } // end compareTo
 
+        /**
+         * Returns a String representation of this EntryPQ, namely the vertex and its cost
+         * @return String representation of this EntryPQ
+         */
         public String toString()
         {
             return vertex.toString() + " " + cost;

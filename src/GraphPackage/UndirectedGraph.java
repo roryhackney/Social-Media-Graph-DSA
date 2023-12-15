@@ -2,8 +2,13 @@ package GraphPackage;
 
 import ADTPackage.StackInterface;
 
+/**
+ * Represents an Undirected Graph which stores the vertices and the undirected edges connecting them to their neighbors
+ * @param <T> data type of the objects held in the graph
+ */
 public class UndirectedGraph<T> extends DirectedGraph<T> implements GraphInterface<T>
 {
+    /** Constructor */
     public UndirectedGraph()
     {
         super();

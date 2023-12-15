@@ -6,6 +6,8 @@ import java.util.Iterator;
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
+   @param <K> data type for the search key
+   @param <V> data type for the associated value
 */
 public interface DictionaryInterface<K, V>
 {

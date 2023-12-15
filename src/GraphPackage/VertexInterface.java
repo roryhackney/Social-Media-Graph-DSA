@@ -1,6 +1,7 @@
 package GraphPackage;
 
 import java.util.Iterator;
+/** Required methods of vertices which are used for graph nodes */
 
 public interface VertexInterface<T>
 {

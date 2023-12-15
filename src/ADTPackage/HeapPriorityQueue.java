@@ -5,12 +5,15 @@ package ADTPackage;
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.01
+   @param <T> data type for the objects stored in the priority queue. Must be Comparable.
 */
 public final class HeapPriorityQueue<T extends Comparable<? super T>>
                    implements PriorityQueueInterface<T>
 {
-	private MaxHeapInterface<T> pq;	
-	
+	/** The priorityQueue to hold items */
+	private MaxHeapInterface<T> pq;
+
+	/** Constructs a new empty PriorityQueue */
 	public HeapPriorityQueue()
 	{
 		pq = new MaxHeap<>();

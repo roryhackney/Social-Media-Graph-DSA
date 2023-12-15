@@ -6,14 +6,27 @@ import ADTPackage.ListWithIteratorInterface;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Represents a node / vertex of a graph, which holds data and connects to other vertices
+ * @param <T> data type of the data object held in the vertex
+ */
 class Vertex<T> implements VertexInterface<T>
 {
+    /** Object held in the vertex which identifies the vertex*/
     private T label;
-    private ListWithIteratorInterface<Edge> edgeList; // Edges to neighbors
-    private boolean visited;                          // True if visited
-    private VertexInterface<T> previousVertex;        // On path to this vertex
-    private double cost;                              // Of path to this vertex
+    /** List of edges between this vertex and its neighbors */
+    private ListWithIteratorInterface<Edge> edgeList;
+    /** True if this vertex has been visited during the present traversal/path */
+    private boolean visited;
+    /** The previous vertex along the path from origin to this vertex */
+    private VertexInterface<T> previousVertex;
+    /** The cost of the path from origin to this vertex */
+    private double cost;
 
+    /**
+     * Constructor
+     * @param vertexLabel the data object used to identify the vertex
+     */
     public Vertex(T vertexLabel)
     {
         label = vertexLabel;
@@ -69,15 +82,22 @@ class Vertex<T> implements VertexInterface<T>
         cost = newCost;
     } // end setCost
 
+    /**
+     * Returns a String representation of this vertex's label
+     * @return String representation of the label
+     */
     public String toString()
     {
         return label.toString();
     } // end toString
 
+    /** Represents an iterator over the weights of the edges between this vertex and its neighbors */
     private class WeightIterator implements Iterator<Double>
     {
+        /** Iterator over the edges */
         private Iterator<Edge> edges;
 
+        /** Constructor */
         private WeightIterator()
         {
             edges = edgeList.getIterator();
@@ -102,6 +122,7 @@ class Vertex<T> implements VertexInterface<T>
             return edgeWeight;
         } // end next
 
+        /** Remove not supported for WeightIterator */
         public void remove()
         {
             throw new UnsupportedOperationException();
@@ -170,6 +191,11 @@ class Vertex<T> implements VertexInterface<T>
         return result;
     } // end getUnvisitedNeighbor
 
+    /**
+     * Whether this vertex's label is equal to the other vertex's label
+     * @param other the object to be compared, equal only if both are vertexes with the same label
+     * @return whether this vertex's label is equal to the other's label
+     */
     public boolean equals(Object other)
     {
         boolean result;
@@ -187,10 +213,13 @@ class Vertex<T> implements VertexInterface<T>
         return result;
     } // end equals
 
+    /** Iterator over the neighbors this vertex is connected to */
     private class NeighborIterator implements Iterator<VertexInterface<T>>
     {
+        /**Iterator over the edges between this vertex and its neighbors */
         private Iterator<Edge> edges;
 
+        /** Constructor */
         private NeighborIterator()
         {
             edges = edgeList.getIterator();
@@ -216,41 +245,61 @@ class Vertex<T> implements VertexInterface<T>
             return nextNeighbor;
         } // end next
 
+        /**Not supported for this iterator */
         public void remove()
         {
             throw new UnsupportedOperationException();
         } // end remove
     } // end NeighborIterator
 
+    /** Edge between a vertex and its neighbors, may be weighted */
     protected class Edge
     {
-        private VertexInterface<T> vertex; // Vertex at end of edge
+        /**Vertex at end of edge*/
+        private VertexInterface<T> vertex;
+        /**Weight of the edge*/
         private double weight;
 
+        /**
+         * Constructor
+         * @param endVertex Vertex at end of edge
+         * @param edgeWeight weight of the edge
+         */
         protected Edge(VertexInterface<T> endVertex, double edgeWeight)
         {
             vertex = endVertex;
             weight = edgeWeight;
         } // end constructor
 
+        /**
+         * Constructor
+         * @param endVertex Vertex at end of edge
+         */
         protected Edge(VertexInterface<T> endVertex)
         {
             vertex = endVertex;
             weight = 0;
         } // end constructor
 
+        /** Returns the vertex at the end of the edge
+         * @return the vertex at the end of the edge
+         * */
         protected VertexInterface<T> getEndVertex()
         {
             return vertex;
         } // end getEndVertex
 
+        /** Returns the weight of the edge
+         * @return the weight of the edge
+         * */
         protected double getWeight()
         {
             return weight;
         } // end getWeight
     } // end Edge
 
-    public void display() // For testing
+    /** For testing */
+    public void display()
     {
         System.out.print(label + " " );
         Iterator<VertexInterface<T>> i = getNeighborIterator();

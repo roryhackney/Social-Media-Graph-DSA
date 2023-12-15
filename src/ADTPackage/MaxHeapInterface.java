@@ -1,7 +1,7 @@
 package ADTPackage;
 /**
    An interface for the ADT maxheap.
-   
+   @param <T> data type for the objects to be held in the MaxHeap
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
