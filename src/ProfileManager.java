@@ -79,6 +79,10 @@ public class ProfileManager {
      * @param profile       Profile to be removed.
      */
     public void removeProfile(Profile profile) {
+        //TODO: remove edges between this profile's vertex and its friends
+        //TODO: remove this profile from its friends profiles list of friends
+        //TODO: remove the profile from the auxiliary dict
+        //TODO: remove the profile's vertex from the graph
 //        profileGraph.remove(profile);
     }
 
@@ -99,6 +103,18 @@ public class ProfileManager {
                 friend1.addFriend(friend2);
                 friend2.addFriend(friend1);
             }
+        }
+        return result;
+    }
+
+    public boolean removeFriendship(Profile friend1, Profile friend2) {
+        boolean result = false;
+        if (friend1 != null && friend2 != null) {
+            result = profileGraph.removeEdge(friend1, friend2);
+        }
+        if (result) {
+            friend1.removeFriend(friend2);
+            friend2.removeFriend(friend1);
         }
         return result;
     }

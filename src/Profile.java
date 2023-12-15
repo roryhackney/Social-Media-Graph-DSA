@@ -108,6 +108,15 @@ public class Profile {
     }
 
     /**
+     * Removes a friend from this Profile's list of friends
+     * @param friend the friend to remove
+     * @return true if the friend was removed, else false (may not be in list of friends)
+     */
+    public boolean removeFriend(Profile friend) {
+        return friendProfiles.remove(friend);
+    }
+
+    /**
      * Returns a list of all the friends added to this profile.
      * @return      A string list of all the friends using their toString method
      */

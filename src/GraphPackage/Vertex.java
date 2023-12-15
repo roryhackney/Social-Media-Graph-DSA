@@ -82,6 +82,16 @@ class Vertex<T> implements VertexInterface<T>
         cost = newCost;
     } // end setCost
 
+    /** Should remove all edges between this vertex and the desired neighbor */
+    //TODO: test if this works!
+    public void removeEdgesTo(Vertex<T> neighbor) {
+        for (int index = 0; index < edgeList.getLength(); index++) {
+            if (edgeList.getEntry(index).getEndVertex().equals(neighbor)) {
+                edgeList.remove(index--);
+            }
+        }
+    }
+
     /**
      * Returns a String representation of this vertex's label
      * @return String representation of the label
