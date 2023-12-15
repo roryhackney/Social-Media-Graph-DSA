@@ -29,6 +29,10 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return addOutcome == null; // Was addition to dictionary successful?
     } // end addVertex
 
+    /**
+     * Removes vertexLabel from all places it exists in the graph
+     * @param vertexLabel the object to remove from the graph
+     */
     public void remove(T vertexLabel) {
         vertices.remove(vertexLabel);
     }

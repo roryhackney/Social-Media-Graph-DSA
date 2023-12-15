@@ -1,3 +1,4 @@
+import javax.sound.sampled.Port;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
@@ -32,8 +33,11 @@ public class Main {
             //5. View all my friends
             System.out.println("5\tView My Friends");
             //6. View all my friends' friends
+            System.out.println("6\tView My Friends and Their Friends");
             //7. Switch accounts
+            System.out.println("7\tSwitch Accounts");
             //8. Delete a user's account -> Warning: this will permanently delete user + name. Are you sure? Y/N
+            System.out.println("8\tDelete An Account");
             System.out.println("9\tLog Out");
             selection = readInput.nextLine().strip();
             switch (selection) {
@@ -45,7 +49,7 @@ public class Main {
                     manager.addProfile(newUser);
                     break;
                 case "3":
-                    manager.displayProfiles();
+                    System.out.println(manager.displayProfiles());
                     System.out.println("That's all the current users. Would you like to add a friend from the list?");
                     System.out.println("Enter y or Enter for yes, otherwise no.");
                     String addFriend = readInput.nextLine().strip().toLowerCase();
@@ -55,6 +59,70 @@ public class Main {
                 case "4":
                     viewProfileAndFriends();
                     break;
+                case "5":
+                    System.out.println(admin);
+                    System.out.println(admin.printFriends());
+                    break;
+                case "6":
+                    ArrayList<Profile> friends = admin.getFriends();
+                    for (Profile friend : friends) {
+                        System.out.println("Friend: " + friend);
+                        System.out.println(friend.printFriends());
+                    }
+                    break;
+                case "7":
+                    String cont = "y";
+                    while (cont.equals("y")) {
+                        System.out.println("Which account would you like to switch to?");
+                        while (!readInput.hasNextInt()) {
+                            System.out.println("Please enter an ID (whole number)");
+                            readInput.next();
+                        }
+                        int id = readInput.nextInt();
+                        readInput.nextLine(); //remove /n at end of this line
+                        Profile newAdmin = manager.getUser(id);
+                        if (newAdmin == null) {
+                            System.out.println("There is no profile with that id.");
+                        } else if (newAdmin == admin) {
+                            System.out.println("You are already logged in to that account.");
+                        } else {
+                            admin = newAdmin;
+                            System.out.println("You are now logged in as " + admin);
+                        }
+                        System.out.println("Would you like to switch to a different account?");
+                        cont = "";
+                        while (! cont.equals("y") && ! cont.equals("n")) {
+                            System.out.println("Enter y for yes, n for no.");
+                            cont = readInput.nextLine().strip().toLowerCase();
+                        }
+                    }
+                    break;
+                case "8":
+                    System.out.println("This will permanently delete an account. Are you sure? Enter y for yes.");
+                    String delete = readInput.nextLine().strip().toLowerCase();
+                    if (delete.equals("y")) {
+                        System.out.println("Which account do you want to delete?");
+                        while (!readInput.hasNextInt()) {
+                            System.out.println("Please enter an ID (whole number)");
+                            readInput.next();
+                        }
+                        int id = readInput.nextInt();
+                        readInput.nextLine(); //remove /n at end of this line
+                        Profile del = manager.getUser(id);
+                        if (del == null) {
+                            System.out.println("There is no profile with that id.");
+                        } else if (del == admin) {
+                            System.out.println("You can't delete the account you're logged into. Try switching accounts first.");
+                        } else {
+                            System.out.println("You are about to delete " + del + ". Are you sure? Enter y for yes.");
+                        }
+                        delete = readInput.nextLine().strip().toLowerCase();
+                        if (delete.equals("y")) {
+                            manager.removeProfile(del);
+                            System.out.println(del + " has been successfully deleted.");
+                        }
+                        break;
+                    }
                 case "9":
                     System.out.println("This will end your session and delete all users. Are you sure you want to exit?");
                     String exit = "";
@@ -195,14 +263,14 @@ public class Main {
                 System.out.println("User #" + id + " does not exist.");
             } else {
                 System.out.println(user);
-                user.printFriends();
+                System.out.println(user.printFriends());
                 System.out.println("That's all their friends.");
-                System.out.println("Would you like to view another profile?");
-                input = "x";
-                while (!input.isEmpty() && !input.equals("y") && !input.equals("n")) {
-                    System.out.println("Enter y or Enter for yes, n for no.");
-                    input = readInput.nextLine().strip();
-                }
+            }
+            System.out.println("Would you like to view another profile?");
+            input = "x";
+            while (!input.isEmpty() && !input.equals("y") && !input.equals("n")) {
+                System.out.println("Enter y or Enter for yes, n for no.");
+                input = readInput.nextLine().strip();
             }
         }
     }
