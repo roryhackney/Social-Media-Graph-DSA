@@ -1,62 +1,48 @@
 import ADTPackage.QueueInterface;
 import GraphPackage.UndirectedGraph;
-import src.Profile;
-
-import java.util.ArrayList;
-
+import java.util.Iterator;
+import ADTPackage.UnsortedLinkedDictionary;
 /**
  * ProfileManager class to manage Profiles for social network
  * @author Rory Hackney
- * @author Jordan Fleming
- * @version 1.0
- * @since 12/13/2023
  */
 public class ProfileManager {
-    /**
-     * UndirectedGraph to hold Profile objects
-     */
+    /** UndirectedGraph to hold Profile objects*/
     private UndirectedGraph<Profile> profileGraph;
-    private ArrayList<Profile> allProfiles;
+    /** Dictionary that holds all profiles searchable by ID */
+    private UnsortedLinkedDictionary<Integer, Profile> allProfiles;
 
     /**
      * Sole Constructor for ProfileManager class.
      */
     public ProfileManager() {
-        profileGraph = new UndirectedGraph<Profile>();
-        allProfiles = new ArrayList<Profile>();
+        profileGraph = new UndirectedGraph<>();
+        allProfiles = new UnsortedLinkedDictionary<>();
     }
 
     /**
-     * Adds a given profile to the underlying graph.
-     * @param profile       Profile to be added
+     * Adds a new Profile to the graph/list of users
+     * @param profile the Profile to be added, will not be added if null
      */
     public void addProfile(Profile profile) {
-        profileGraph.addVertex(profile);
-        allProfiles.add(profile);
-    }
-
-    /**
-     * Adds a connection between two profiles
-     * @param currentProfile    Starting profile to add edge to.
-     * @param friendProfile     End profile that the starting profile is linked to
-     */
-    public void addConnection(Profile currentProfile, Profile friendProfile) {
-        profileGraph.addEdge(currentProfile, friendProfile);
-        currentProfile.addFriend(friendProfile);
-    }
-
-    /**
-     * Gives a string representation of all profiles currently in profileGraph.
-     * @param profile       The profile to begin traversal from.
-     * @return              String of all profiles in graph.
-     */
-    public String displayProfiles(Profile profile) {
-        StringBuilder profilesString = new StringBuilder();
-        profilesString.append("All profiles: \n");
-        for (Profile currentProfile : allProfiles) {
-            profilesString.append(currentProfile.toString() + "\n");
+        if (profile != null) {
+            profileGraph.addVertex(profile);
+            allProfiles.add(profile.getId(), profile);
         }
-        return  profilesString.toString();
+    }
+
+    /**
+     * Returns a String of all the Profiles in the graph/list.
+     * @return a String representation of all the Profiles
+     */
+    public String displayProfiles() {
+        StringBuilder profilesString = new StringBuilder();
+        profilesString.append("Current users: ").append(profileGraph.getNumberOfVertices()).append("\n");
+        Iterator<Profile> iter = allProfiles.getValueIterator();
+        while (iter.hasNext()) {
+            profilesString.append(iter.next()).append("\n");
+        }
+        return profilesString.toString();
     }
 
     /**
@@ -66,9 +52,11 @@ public class ProfileManager {
     public String displayProfilesAndFriends() {
         StringBuilder profilesString = new StringBuilder();
         profilesString.append("All profiles: \n");
-        for (Profile currentProfile : allProfiles) {
-            profilesString.append(currentProfile.toString() + "\n");
-            profilesString.append("Friends of " + currentProfile.getName() + ":\n");
+        Iterator<Profile> iter = allProfiles.getValueIterator();
+        while (iter.hasNext()) {
+            Profile currentProfile = iter.next();
+            profilesString.append(currentProfile).append("\n");
+            profilesString.append("Friends of ").append(currentProfile.getName()).append(":\n");
             profilesString.append(currentProfile.printFriends());
         }
         return  profilesString.toString();
@@ -83,21 +71,35 @@ public class ProfileManager {
         StringBuilder profilesString = new StringBuilder();
         profilesString.append("All profiles: \n");
         QueueInterface<Profile> breadthFirst = profileGraph.getBreadthFirstTraversal(profile);
-        while (!breadthFirst.isEmpty()) {
-            Profile currentProfile = breadthFirst.dequeue();
-            profilesString.append(currentProfile.toString() + "\n");
-            profilesString.append("Friends of " + currentProfile.getName() + ":\n");
-            profilesString.append(currentProfile.printFriends());
-        }
-        return  profilesString.toString();
+        return profilesString.toString();
     }
-
 
     /**
      * Removes a profile from the graph
      * @param profile       Profile to be removed.
      */
     public void removeProfile(Profile profile) {
-        profileGraph.remove(profile);
+//        profileGraph.remove(profile);
+    }
+
+    /**
+     * Returns the profile with the given id, or null if user doesn't exist
+     * @param id the id of the profile, should be a number
+     * @return the profile with the given id, or null if profile doesn't exist
+     */
+    public Profile getUser(int id) {
+        return allProfiles.getValue(id);
+    }
+
+    public boolean addFriendship(Profile friend1, Profile friend2) {
+        boolean result = false;
+        if (friend1 != null && friend2 != null) {
+            result = profileGraph.addEdge(friend1, friend2);
+            if (result) {
+                friend1.addFriend(friend2);
+                friend2.addFriend(friend1);
+            }
+        }
+        return result;
     }
 }

@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.ArrayList;
 
@@ -95,7 +95,7 @@ public class Profile {
      * Returns the current status of the profile.
      * @return      Enum Status of the profile.
      */
-    public Status getStatus() {
+    public Profile.Status getStatus() {
         return status;
     }
 
@@ -117,7 +117,7 @@ public class Profile {
         StringBuilder friendString = new StringBuilder();
         friendString.append("Friends List: \n");
         for (Profile friend : friendProfiles) {
-            friendString.append(friend.toString() + "\n");
+            friendString.append(friend.toString()).append("\n");
         }
         return friendString.toString();
     }
@@ -143,6 +143,15 @@ public class Profile {
      * @return      String representation of the profile.
      */
     public String toString() {
-        return id + " " + name + " " + picture + " " + status;
+        return "User ID: " + id + ", Name: " + name + ", Picture: " + picture + ", Status: " + status;
+    }
+
+    /**
+     * Returns a copy of the list of friends for this profile
+     * @return a copy of the list of friends for this profile
+     */
+    public ArrayList<Profile> getFriends() {
+        //copy so can't alter list of friends for this profile
+        return new ArrayList<Profile>(friendProfiles);
     }
 }
