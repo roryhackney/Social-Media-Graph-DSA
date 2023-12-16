@@ -2,6 +2,9 @@ import ADTPackage.QueueInterface;
 import GraphPackage.UndirectedGraph;
 import java.util.Iterator;
 import ADTPackage.UnsortedLinkedDictionary;
+import GraphPackage.Vertex;
+import GraphPackage.VertexInterface;
+
 /**
  * ProfileManager class to manage Profiles for social network
  * @author Rory Hackney
@@ -83,6 +86,12 @@ public class ProfileManager {
         //TODO: remove this profile from its friends profiles list of friends
         //TODO: remove the profile from the auxiliary dict
         //TODO: remove the profile's vertex from the graph
+        for (Profile friend : profile.getFriends()) {
+            Vertex<Profile> profileVertex = profileGraph.getVertex(profile);
+            Vertex<Profile> friendVertex = profileGraph.getVertex(friend);
+            profileGraph.removeEdge(friendVertex, profileVertex);
+            profileGraph.removeEdge(profileVertex, friendVertex);
+        }
 //        profileGraph.remove(profile);
     }
 
@@ -107,15 +116,15 @@ public class ProfileManager {
         return result;
     }
 
-    public boolean removeFriendship(Profile friend1, Profile friend2) {
+    public void removeFriendship(Profile friend1, Profile friend2) {
         boolean result = false;
         if (friend1 != null && friend2 != null) {
-            result = profileGraph.removeEdge(friend1, friend2);
+            profileGraph.removeEdge(profileGraph.getVertex(friend1), profileGraph.getVertex(friend2));
+            result = true;
         }
         if (result) {
             friend1.removeFriend(friend2);
             friend2.removeFriend(friend1);
         }
-        return result;
     }
 }

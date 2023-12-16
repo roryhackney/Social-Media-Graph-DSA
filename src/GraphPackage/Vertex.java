@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * Represents a node / vertex of a graph, which holds data and connects to other vertices
  * @param <T> data type of the data object held in the vertex
  */
-class Vertex<T> implements VertexInterface<T>
+public class Vertex<T> implements VertexInterface<T>
 {
     /** Object held in the vertex which identifies the vertex*/
     private T label;

@@ -21,9 +21,9 @@ public class UndirectedGraph<T> extends DirectedGraph<T> implements GraphInterfa
         // Assertion: edge count is twice its correct value due to calling addEdge twice
     } // end addEdge
 
-    public boolean removeEdge(T begin, T end) {
+    public void removeEdge(GraphPackage.Vertex<T> begin, GraphPackage.Vertex<T> end) {
         //TODO: implement removeEdge in Graph class
-        return true;
+        begin.removeEdgesTo(end);
     }
 
     public boolean addEdge(T begin, T end)
