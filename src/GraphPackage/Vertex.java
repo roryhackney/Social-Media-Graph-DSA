@@ -82,8 +82,8 @@ public class Vertex<T> implements VertexInterface<T>
         cost = newCost;
     } // end setCost
 
-    /** Should remove all edges between this vertex and the desired neighbor */
-    //TODO: test if this works!
+    /** Should remove all edges between this vertex and the desired neighbor
+     * @param neighbor vertex to remove edges that connect to it */
     public void removeEdgesTo(Vertex<T> neighbor) {
         int size = edgeList.getLength();
         for (int index = 1; index <= size; index++) {
