@@ -27,7 +27,7 @@ public class Main {
             System.out.println("1\tModify My Profile");
             System.out.println("2\tAdd Another User");
             //3. View all users -> add friend
-            System.out.println("3\tView All Users");
+            System.out.println("3\tView All Users and Add Friends");
             //4. View another user and their friends -> add friend
             System.out.println("4\tView User's Friends");
             //5. View all my friends
@@ -121,8 +121,8 @@ public class Main {
                             manager.removeProfile(del);
                             System.out.println(del + " has been successfully deleted.");
                         }
-                        break;
                     }
+                    break;
                 case "9":
                     System.out.println("This will end your session and delete all users. Are you sure you want to exit?");
                     String exit = "";

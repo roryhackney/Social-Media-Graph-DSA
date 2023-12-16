@@ -89,6 +89,10 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return vertices.getSize();
     } // end getNumberOfVertices
 
+    public Vertex<T> getVertex(T target) {
+        return (Vertex<T>) vertices.getValue(target);
+    }
+
     public int getNumberOfEdges()
     {
         return edgeCount;

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * Represents a node / vertex of a graph, which holds data and connects to other vertices
  * @param <T> data type of the data object held in the vertex
  */
-class Vertex<T> implements VertexInterface<T>
+public class Vertex<T> implements VertexInterface<T>
 {
     /** Object held in the vertex which identifies the vertex*/
     private T label;
@@ -85,9 +85,12 @@ class Vertex<T> implements VertexInterface<T>
     /** Should remove all edges between this vertex and the desired neighbor */
     //TODO: test if this works!
     public void removeEdgesTo(Vertex<T> neighbor) {
-        for (int index = 0; index < edgeList.getLength(); index++) {
+        int size = edgeList.getLength();
+        for (int index = 1; index <= size; index++) {
             if (edgeList.getEntry(index).getEndVertex().equals(neighbor)) {
-                edgeList.remove(index--);
+                edgeList.remove(index);
+                index--;
+                size--;
             }
         }
     }
