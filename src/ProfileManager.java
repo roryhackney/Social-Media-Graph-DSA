@@ -101,6 +101,11 @@ public class ProfileManager {
         return allProfiles.getValue(id);
     }
 
+    /** Connects two friends' profiles together in the graph with an edge, and adds the new friend to their profile 
+    * @param friend1 the first profile to be connected
+    * @param friend2 the second profile to be connected
+    * @return true if the friendship was successfully added, else false
+    */
     public boolean addFriendship(Profile friend1, Profile friend2) {
         boolean result = false;
         if (friend1 != null && friend2 != null) {
@@ -113,6 +118,10 @@ public class ProfileManager {
         return result;
     }
 
+    /** Disconnects two friends' profiles, removing their friendship, and removing the friend from their profile
+    * @param friend1 the first profile to be disconnected
+    * @param2 friend2 the second profile to be disconnected
+    */
     public void removeFriendship(Profile friend1, Profile friend2) {
         if (friend1 != null && friend2 != null) {
             profileGraph.removeEdge(profileGraph.getVertex(friend1), profileGraph.getVertex(friend2));
