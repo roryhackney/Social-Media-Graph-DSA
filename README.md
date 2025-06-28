@@ -2,7 +2,7 @@
 **Purpose:** To practice and demonstrate proficiency in creating, manipulating and utilizing graphs as well as previously studied Abstract Data Types (ADTs) / data structures, including linked lists, dictionaries / maps, heaps, (priority) queues, and stacks, using the Java language.
 
 ## Summary
-For this project, I worked with [https://github.com/Jofleming](Jordan) to design and implement an application that maintains the data for a fictional social media network. Each user in the network has a profile containing their name, optional profile picture, current status, and a list of their friends.
+For this project, I worked with [Jordan]([Jordan](https://github.com/Jofleming)) to design and implement an application that maintains the data for a fictional social media network. Each user in the network has a profile containing their name, optional profile picture, current status, and a list of their friends.
 
 The application provides a menu that allows a user to:
 * Join the network (by creating a profile)
