@@ -42,7 +42,7 @@ When a profile is deleted, it is removed from all relevant data structures, incl
     * ProfileManager
         * Manages the profiles in the undirected graph / social network
     * Main
-        * Where you run the experiment
+        * Where you run the application
 * ADTPackage
     * DictionaryInterface
         * LinkedDictionary
