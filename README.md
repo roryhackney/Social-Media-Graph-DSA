@@ -2,7 +2,7 @@
 **Purpose:** To practice and demonstrate proficiency in creating, manipulating and utilizing graphs as well as previously studied Abstract Data Types (ADTs) / data structures, including linked lists, dictionaries / maps, heaps, (priority) queues, and stacks, using the Java language.
 
 ## Summary
-For this project, I worked with [Jordan](https://github.com/Jofleming) to design and implement an application that maintains the data for a fictional social media network. Each user in the network has a profile containing their name, optional profile picture, current status, and a list of their friends.
+For this project, I worked with [Jordan](https://github.com/Jofleming) to design and implement an application that maintains the data for a fictional social media network using a graph data structure. Each user in the network has a profile containing their name, optional profile picture, current status, and a list of their friends.
 
 The application provides a menu that allows a user to:
 * Join the network (by creating a profile)
@@ -18,8 +18,15 @@ The application provides a menu that allows a user to:
 * End the program, resetting the graph to empty
 
 ## Part 1: UML Class and Object Diagrams
-We created a UML class diagram to define various interfaces, classes, methods, and fields, for reference while implementing the application.
+We created UML class diagrams to define various interfaces, classes, methods, and fields, for reference while implementing the application.
+![social-media-graph-adt-package-stack-queue-list](https://github.com/user-attachments/assets/254b676a-9c8f-433c-9e27-b37275101c01)
+![social-media-graph-adt-package-maxheap-priorityqueue-dictionary](https://github.com/user-attachments/assets/82cc986d-201f-4a38-92c5-e410a7070b4f)
+![social-media-graph-package](https://github.com/user-attachments/assets/6fd7bb03-e95d-482f-9c10-438caf286711)
+![social-media-graph-main-package](https://github.com/user-attachments/assets/72faff36-29a7-4e03-ba13-ed2d47edd182)
+
 We also created object diagrams in order to clarify the relationships between various data structures and the data within them, such as profiles.
+![social-media-graph-object-diagram-generic](https://github.com/user-attachments/assets/fb6834fa-0b9d-4bc2-8d54-13ee19a41f65)
+![social-media-graph-object-diagram-instances](https://github.com/user-attachments/assets/61ad8e10-7c4c-4bd8-9d05-9e2e003f816b)
 
 ## Part 2: Java Implementation
 The undirected graph inherits the directed graph, which is actually the implementation of a LinkedDictionary. There are layers and layers of data structures here.
