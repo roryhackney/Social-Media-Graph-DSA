@@ -36,7 +36,7 @@ The undirected graph holds the new profiles but unless they are friends, there w
 When a profile is deleted, it is removed from all relevant data structures, including the graph, main list of profiles, and friend lists.
 
 ### Packages, Interfaces and Classes
-
+* Social Media Implementation
     * Profile
        * Holds information about each user
     * ProfileManager
