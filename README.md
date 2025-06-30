@@ -89,6 +89,9 @@ When a profile is deleted, it is removed from all relevant data structures, incl
 ### Documentation
 * In addition to this README, Javadoc comments are on each function to explain what they do, except where the Javadoc is inherited from the implemented interface.
 
+### Testing
+We implemented programmatic testing to ensure proper functionality of the graph data structure, creating a Main for each variation, including Directed Weighted (MainDW.java), Directed Unweighted (MainDU), Undirected Weighted (MainUW), and Undirected Unweighted (MainUU). Since true unit testing is very complex for graphs, we implemented testing based on examples provided by the data structures course. This helped us to verify that the graph was implemented correctly before using it in the social media program.
+
 ## Output
 When Main is run, the menu simulates a user interacting with the social media system. The user has admin rights to create new profiles, delete anyone's profile, etc, in order to demo the functionality of the application. On run, the user must create a profile, and the current user is stored in a variable. This allows the current user to be switched. The user interacts by typing things into their keyboard based on the displayed prompt.
 
